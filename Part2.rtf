@@ -11,27 +11,41 @@
 \
 -use a for loop to determine which sections are in order and log the start/end indices of said sections into the ArrayList\
 \
--create a new empty array (tempArr) the same length as the input Array\
+-log the end index for the first sorted portion in an index var, then delete the first two elements from the ArrayList\
 \
--start filling that array with the first sorted portion (and delete those indices from the arraylist)\
+-log the start index for the last sorted portion in a different (back) index var, the delete the last two elements from the array list\
 \
 -in the while loop:\
-	-create one array with the first sorted portion (grab from tempArr)\
+	-create one array with the first sorted portion (grab from the inputArr)\
 \
 	-create another array with the next sorted portion (and delete its indices)\
 \
-	-change the value of the index used to generate the first array from the tempArr\
+	-change the value of the index used to generate the first array from the inputArr\
 \
-	-use merge with the tempArr and the two newly generated arrays to merge them into tempArr\
+	-create the first back array with the last sorted portion (grab from the inputArr)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+	-create another array with the second to last sorted portion (and delete its indices)\
 \
-	-the first array will be re-generated using the new index (i.e. it will be the sorted portion of 	tempArr)\
+	-change the value of the index used to generate the first (and third) array from the inputArr\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+	-use merge with the inputArr and the first two generated arrays to merge them into inputArr\
+\
+	-use the backwards merge (same as regular merge but starts from the end section) on the next 	two arrays\
+\
+	-the first array will be re-generated using the new index (i.e. it will be the sorted portion of 	inputArr)\
 	\
 	-the next array will be generated using the next set of indices in the ArrayList\
 \
-	-merge the two above arrays back into tempArr\
+	-the first array will be re-generated using the new (back) index (i.e. it will be the sorted portion of 	inputArr)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 	\
+	-the next array will be generated using the next set (from the back) of indices in the ArrayList\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+	-merge the first two above arrays back into inputArr, and the next two arrays into the back of 	inputArr\
 \
 	-and so on\'85\
 \
--the merge method is the same as the original merge algorithm\
-\
-In the worse case, this would have a runtime of O(n^2). This is if the array is in opposite order (greatest to least). Thus, the while loop (line 44) would run n times, and it would call the merge method each time, which contains a while loop (line 60) that would run n times. Thus, the runtime is O(n^2).}
+-the merge method is the same as the original merge algorithm, and the backMerge is the same except for the starting index for the inputArray}
