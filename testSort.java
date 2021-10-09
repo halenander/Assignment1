@@ -7,19 +7,18 @@ public class testSort{
     public testSort(){
     }
 
-    public boolean isSorted(double[] inputArr)throws UnsortedException{
-        UnsortedException notSorted = new UnsortedException("Array not sorted");
+    public boolean isSorted(double[] inputArr){
         for (int i = 0; i < (inputArr.length-1); i++){
             //if a number has a number immediately to the right of it that is less, the list is unsorted
             if (inputArr[i+1]< inputArr[i]){
-                throw notSorted;
+                return false;
             }
         }
         //otherwise list is sorted
         return true;
     }
 
-    public static void main(String[] args) throws UnsortedException{
+    public static void main(String[] args){
         testSort newTest = new testSort();
         selSort selSort = new selSort();
         bubSort bubSort = new bubSort();
@@ -27,7 +26,6 @@ public class testSort{
         merSort merSort = new merSort();
         quiSort quiSort = new quiSort();
         Random rand = new Random();
-        boolean isSorted = true;
 
         //generate array
         double[] testArr = new double[50000];
@@ -50,15 +48,8 @@ public class testSort{
         long end = System.currentTimeMillis();
 
         //check if array is sorted
-        try{
-            newTest.isSorted(testArr1);
-        }
-        catch (UnsortedException exception) {
-            isSorted = false;
-        }
-
         //if array is sorted, print time and sort using next method
-        if (isSorted) {
+        if (newTest.isSorted(testArr1)) {
             System.out.println("selection sort: " + (end-start));
             start = System.currentTimeMillis();
             bubSort.sort(testArr2);
@@ -66,14 +57,8 @@ public class testSort{
         }
 
         //cont. for remaining methods
-        try{
-            newTest.isSorted(testArr2);
-        }
-        catch (UnsortedException exception) {
-            isSorted = false;
-        }
 
-        if (isSorted) {
+        if (newTest.isSorted(testArr2)) {
             System.out.println("bubble sort: " + (end - start));
             start = System.currentTimeMillis();
             insSort.sort(testArr3);
@@ -81,14 +66,7 @@ public class testSort{
         }
 
 
-        try{
-            newTest.isSorted(testArr3);
-        }
-        catch (UnsortedException exception) {
-            isSorted = false;
-        }
-
-        if (isSorted) {
+        if (newTest.isSorted(testArr3)) {
             System.out.println("insertion sort: " + (end-start));
             start = System.currentTimeMillis();
             merSort.sort(testArr4);
@@ -96,28 +74,16 @@ public class testSort{
         }
 
 
-        try{
-            newTest.isSorted(testArr4);
-        }
-        catch (UnsortedException exception) {
-            isSorted = false;
-        }
 
-        if (isSorted) {
+        if (newTest.isSorted(testArr4)) {
             System.out.println("merge sort: " + (end - start));
             start = System.currentTimeMillis();
             quiSort.sort(testArr5, 0, (testArr5.length - 1));
             end = System.currentTimeMillis();
         }
 
-        try{
-            newTest.isSorted(testArr5);
-        }
-        catch (UnsortedException exception) {
-            isSorted = false;
-        }
 
-        if (isSorted) {
+        if (newTest.isSorted(testArr5)) {
             System.out.println("quick sort: " + (end - start));
         }
 
